@@ -8,8 +8,9 @@ Future<void> handleBackgroundMessage(RemoteMessage? message) async {
 }
 
 class FirebaseApi {
-  final _firebaseMessaging = FirebaseMessaging.instance;
-  Future<void> initNotification() async {
+  static final _firebaseMessaging = FirebaseMessaging.instance;
+
+  static Future<void> initNotification() async {
     await _firebaseMessaging.requestPermission();
     final fcmToken = await _firebaseMessaging.getToken();
     print('Hello');
@@ -27,7 +28,7 @@ class FirebaseApi {
     });
   }
 
-  handleMessage(RemoteMessage? message) {
+  static handleMessage(RemoteMessage? message) {
     if (message == null) return;
     log('${message.notification?.title}');
   }

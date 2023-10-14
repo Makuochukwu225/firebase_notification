@@ -54,7 +54,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     super.initState();
-    FirebaseApi().initNotification();
+    FirebaseApi.initNotification();
   }
 
   void _incrementCounter() {
