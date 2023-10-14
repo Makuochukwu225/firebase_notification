@@ -15,10 +15,19 @@ class FirebaseApi {
     log(fcmToken.toString());
     FirebaseMessaging.onBackgroundMessage(handleBackgroundMessage);
 
-    FirebaseMessaging.instance.getInitialMessage().then((value) {
+    FirebaseMessaging.onMessage.listen(handleMessage);
+
+    FirebaseMessaging.onMessageOpenedApp.listen(handleMessage);
+
+    _firebaseMessaging.getInitialMessage().then((value) {
       if (value != null) {
         log(value.notification!.title.toString());
       }
     });
+  }
+
+  handleMessage(RemoteMessage? message) {
+    if (message == null) return;
+    log('${message.notification?.title}');
   }
 }
